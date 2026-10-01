@@ -52,7 +52,7 @@ feynman deepresearch "mechanistic interpretability"
 | `/recipe <task>` | Ranked ML training recipes with datasets and code |
 | `/compare <topic>` | Source comparison matrix |
 | `/draft <topic>` | Paper-style draft from research findings |
-| `/relwork <latex project>` | Related work and introduction written into your LaTeX paper, with BibTeX from real records |
+| `/relwork <latex project>` | Related work and introduction for your LaTeX thesis or paper, in English or German: finds the research gap and scores the text against your template's guidance |
 | `/autoresearch <idea>` | Bounded experiment loop against a benchmark |
 | `/summarize <source>` | Summary of a paper, repository, or PDF |
 

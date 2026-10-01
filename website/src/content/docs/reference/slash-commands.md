@@ -19,7 +19,7 @@ Slash commands are available inside the Feynman REPL. They map to research workf
 | `/recipe <task-or-paper>` | Find ranked, implementable ML training recipes backed by papers, datasets, docs, and code |
 | `/compare <topic>` | Compare multiple sources and produce a matrix of agreements, disagreements, and confidence |
 | `/draft <topic>` | Turn research findings into a paper-style draft |
-| `/relwork <path-to-latex-project> [focus]` | Research prior work for your LaTeX paper and write its related work and introduction, with BibTeX fetched from real records |
+| `/relwork <path-to-latex-project> [lang=en|de] [brief=<file>] [instructions]` | Research prior work in English and German, find the research gap, write the introduction and related work into your LaTeX project, and score them against the template's guidance |
 | `/autoresearch <idea>` | Run a bounded experiment loop against a benchmark, keeping what works |
 | `/summarize <source>` | Summarize a paper, report, README, local artifact, or PDF with the source kept on disk instead of in context |
 

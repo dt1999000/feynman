@@ -1,42 +1,56 @@
 ---
 title: Related Work
-description: Research prior work for your LaTeX paper and write its related-work section and introduction.
+description: Research prior work in English and German, find the research gap, and write the introduction and related work of your LaTeX thesis or paper.
 section: Workflows
 order: 11
 ---
 
-The related work workflow writes the related-work section and introduction of your own paper, in your LaTeX project, citing only papers whose BibTeX was fetched from real records.
+The related work workflow writes the introduction and related-work chapters of your own thesis or paper, in your LaTeX project, in English or German. It finds the research gap your work fills, checks that gap for novelty, and scores the result against the guidance in your template.
 
 ## Usage
 
-From the REPL:
+Put a brief in your project as `feynman-brief.md`:
+
+```markdown
+Name: Path tracking for autonomous sailboats
+Language: de
+
+## Description
+A few sentences on the problem, what you build or study, how you evaluate it, and what you expect to contribute.
+
+## Seed papers
+- 10.1109/xxxx
+- arXiv:2401.12345
+- "Exact Title of a Paper"
+```
+
+Then run, from the REPL or the CLI:
 
 ```
-/relwork ./my-paper
-/relwork ./my-paper related work only, at most one page
+/relwork ./my-thesis
 ```
-
-From the CLI:
 
 ```bash
-feynman relwork ./my-paper
+feynman relwork ./my-thesis
+feynman relwork ./my-thesis lang=en "related work at most six pages"
 ```
 
-The path is your LaTeX project, such as a venue template you have started filling in. Anything after the path is optional focus or instructions.
+`lang=en` or `lang=de` overrides the brief; without either, the document's language option decides. `brief=<file>` reads the brief from somewhere else. Without a brief, Feynman asks for the name, description, seed papers, and language once.
 
 ## How it works
 
-Feynman reads the project: the root `.tex` file and every `\input` it pulls in, your title, abstract, method and results, the citation package, the bibliography file, and your macros. It writes a plan to `outputs/.plans/<slug>.md` with a summary of your paper, its contributions, and 3–6 related-work themes.
-
-One researcher per theme searches the literature in parallel, starting from the papers you already cite and following the citation graph of the closest ones. Each paper found is recorded with its DOI or arXiv ID and how it relates to your work: builds on it, competes with it, or is background.
-
-Feynman selects the papers to cite and calls `feynman_bibtex` to merge their BibTeX into your `.bib` file from doi.org. The [latex-writer](/docs/agents/latex-writer) writes the related work, then the introduction, so the gap the introduction names matches the related work. The [verifier](/docs/agents/verifier) checks that each `\cite` key exists and supports its sentence, and the [reviewer](/docs/agents/reviewer) checks for missing closest work, unfair descriptions of competing work, and contributions stated more strongly than your results support.
+1. **Guidance becomes a rubric.** Feynman reads the project and collects every piece of guidance the template gives for these chapters, such as the questions a related-work chapter must answer, into `outputs/.plans/<slug>-rubric.md`.
+2. **Embedding first.** Seed papers and papers from earlier runs are ranked against your description with [local embeddings](/docs/tools/embeddings), and the ranking sharpens the search themes.
+3. **English and German search.** One researcher per theme searches in both languages, including German theses and reports, follows the citation graph of the closest papers, and names the field's main venues and research groups.
+4. **Rank and select.** All candidates are ranked against your description again. English and German versions of the same work are merged, and your seed papers are kept.
+5. **Research gap.** `outputs/<slug>-gaps.md` lists candidate gaps with a coverage table. Each gap gets a novelty check: searches in both languages that try to find work that already fills it. Gaps that are already filled are dropped.
+6. **Write.** BibTeX comes from doi.org through `feynman_bibtex`. Chapter files are backed up as `<name>.template.tex`, and the [latex-writer](/docs/agents/latex-writer) writes the related work, then the introduction, answering every rubric item.
+7. **Check and score.** The [verifier](/docs/agents/verifier) checks each citation. The [reviewer](/docs/agents/reviewer) writes `outputs/<slug>-scorecard.md`, which scores every rubric item from 0 to 2 and rates, from 1 to 5, relevance to your description (with per-paragraph embedding similarity), the gap's novelty, and writing quality. If any rubric item scores 0, relevance is below 4, or novelty is below 3, the sections are revised once and scored again.
 
 ## Output
 
-- Section files in your project. A section file that holds only a placeholder is filled in; one that already has your prose is left alone, and the new text goes to `<section>.feynman.tex` next to it for you to merge.
-- New entries in your `.bib` file. Papers it already has are not duplicated.
+- The chapters in your project, with the originals kept as `<name>.template.tex`. A chapter that already holds your own prose is not overwritten; the new text goes to `<name>.feynman.tex`.
+- New entries in your `.bib` file.
+- `outputs/<slug>-gaps.md` and `outputs/<slug>-scorecard.md`.
 - `% TODO(feynman)` comments wherever a citation could not be resolved or a claim needs your input.
-- `outputs/<slug>.provenance.md` with papers found, selected and cited, identifiers that failed, verification and review status, and whether the project compiled.
-
-If `latexmk` or `tectonic` is installed, Feynman compiles the project into `.feynman-build/` and reports the result.
+- `outputs/<slug>.provenance.md` with English and German paper counts, embedding cache hits, the chosen gap and its novelty label, the final scores, and whether the project compiled.

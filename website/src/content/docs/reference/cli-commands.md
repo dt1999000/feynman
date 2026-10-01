@@ -89,7 +89,7 @@ feynman replicate "claim"
 feynman recipe "fine-tune a small model for math reasoning"
 feynman compare "topic"
 feynman draft "topic"
-feynman relwork ./my-paper
+feynman relwork ./my-thesis lang=de
 feynman autoresearch "idea"
 feynman summarize paper.pdf
 feynman log

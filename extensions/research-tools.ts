@@ -5,6 +5,7 @@ import { registerBibtexTool } from "./research-tools/bibtex.js";
 import { registerCurrentDateResearchContext } from "./research-tools/current-date.js";
 import { registerDiscoveryCommands } from "./research-tools/discovery.js";
 import { registerDocxFallback } from "./research-tools/docx-fallback.js";
+import { registerEmbeddingTool } from "./research-tools/embeddings.js";
 import { installFeynmanHeader } from "./research-tools/header.js";
 import { registerHelpCommand } from "./research-tools/help.js";
 import { registerHuggingFaceTools } from "./research-tools/huggingface.js";
@@ -32,5 +33,6 @@ export default function researchTools(pi: ExtensionAPI): void {
 	registerServiceTierControls(pi);
 	registerScienceDatabaseTools(pi);
 	registerBibtexTool(pi);
+	registerEmbeddingTool(pi);
 	registerResearchTelemetry(pi);
 }

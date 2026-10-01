@@ -82,6 +82,7 @@ Feynman reads these environment variables. `FEYNMAN_MODEL`, `FEYNMAN_THINKING`, 
 | `FEYNMAN_HOME` | Override the parent directory used to create `.feynman` (default parent: `~`) |
 | `FEYNMAN_THINKING` | Thinking level (same as `--thinking`) |
 | `FEYNMAN_SERVICE_TIER` | Request service tier (same as `--service-tier`) |
+| `FEYNMAN_EMBEDDINGS_DIR` | Where `feynman_embed` keeps its model and vector library (default: `~/.feynman/embeddings`) |
 | `ANTHROPIC_API_KEY` | Anthropic API key |
 | `OPENAI_API_KEY` | OpenAI API key |
 | `GEMINI_API_KEY` | Google Gemini API key |

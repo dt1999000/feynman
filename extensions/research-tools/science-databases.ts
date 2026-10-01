@@ -460,7 +460,7 @@ export function registerScienceDatabaseTools(pi: ExtensionAPI): void {
 			source: SCIENCE_DATABASE_SOURCE_SCHEMA,
 			query: Type.String({
 				description:
-					"Search query, exact literature command, identifier, paper title, or DOI. Examples: semantic: spending more inference compute instead of a bigger model year_from=2024, openalex_search_works:CRISPR year_from=2024 open_access_only=true, openalex_get_work:W2741809807, openalex_citations:W2741809807, openalex_search_authors:Jennifer Doudna, arxiv_get_papers:2309.08600,2401.00001, pmid:35486828, convert:35486828 id_type=pmid, fulltext:PMC9046468, citation journal=Nature year=2022 volume=604 first_page=123 author=Doudna.",
+					"Search query, exact literature command, identifier, paper title, or DOI. Examples: semantic: spending more inference compute instead of a bigger model year_from=2024, openalex_search_works:CRISPR year_from=2024 open_access_only=true, openalex_search_works:Schiffsruder Strömung language=de, openalex_get_work:W2741809807, openalex_citations:W2741809807, openalex_search_authors:Jennifer Doudna, arxiv_get_papers:2309.08600,2401.00001, pmid:35486828, convert:35486828 id_type=pmid, fulltext:PMC9046468, citation journal=Nature year=2022 volume=604 first_page=123 author=Doudna.",
 			}),
 			limit: Type.Optional(Type.Number({ description: `Maximum records to return. Defaults to ${DEFAULT_LIMIT}, max ${MAX_LIMIT}.` })),
 			sort: Type.Optional(Type.Union([

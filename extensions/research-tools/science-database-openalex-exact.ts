@@ -471,9 +471,11 @@ async function exactWorkSearch(query: string, commandQuery: string, defaultLimit
 	else if (parsed.flags.year_from) filters.push(`publication_year:>${Number(parsed.flags.year_from) - 1}`);
 	else if (parsed.flags.year_to) filters.push(`publication_year:<${Number(parsed.flags.year_to) + 1}`);
 	if (parsed.flags.work_type) filters.push(`type:${parsed.flags.work_type}`);
+	// ISO 639-1 codes, e.g. language=de for German-language work; language=en|de for either.
+	if (parsed.flags.language) filters.push(`language:${parsed.flags.language.toLowerCase()}`);
 	if (booleanValue(parsed.flags.open_access_only) === true) filters.push("open_access.is_oa:true");
 	if (parsed.flags.venue) filters.push(`primary_location.source.id:${normalizeEntityId(parsed.flags.venue, "S")}`);
-	if (!parsed.text && !filters.length) throw new Error("openalex_search_works requires a query, venue, year, type, or open-access filter.");
+	if (!parsed.text && !filters.length) throw new Error("openalex_search_works requires a query, venue, year, type, language, or open-access filter.");
 	if (filters.length) url.searchParams.set("filter", filters.join(","));
 	const sort = exactSearchSort(parsed.flags.sort ?? "relevance", Boolean(parsed.text));
 	if (sort) url.searchParams.set("sort", sort);
@@ -490,6 +492,7 @@ async function exactWorkSearch(query: string, commandQuery: string, defaultLimit
 			year_from: parsed.flags.year_from,
 			year_to: parsed.flags.year_to,
 			work_type: parsed.flags.work_type,
+			language: parsed.flags.language,
 			open_access_only: booleanValue(parsed.flags.open_access_only) === true,
 			venue: parsed.flags.venue,
 		},

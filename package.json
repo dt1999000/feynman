@@ -113,5 +113,8 @@
   "author": "Advait Paliwal",
   "publishConfig": {
     "access": "public"
+  },
+  "optionalDependencies": {
+    "@huggingface/transformers": "4.3.0"
   }
 }
