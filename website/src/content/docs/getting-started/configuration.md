@@ -60,7 +60,7 @@ The [pi-web-access README](https://github.com/nicobailon/pi-web-access#readme) d
 
 ## Subagent model overrides
 
-The bundled subagents (`researcher`, `reviewer`, `writer`, `verifier`) inherit the main research model. To pin one to another model, use `/subagents` or set `subagents.agentOverrides.<name>.model` in `~/.feynman/agent/settings.json`; remove it to inherit again. Feynman sets `subagents.agentExcludeDirs` to `["~/.agents"]` so agent files there cannot replace the bundled agents, and `subagents.defaultSubagentOnlyExtensions` to its research tools and pi-web-access so every subagent can search, including foreground runs. It rewrites that list on each launch unless you replace it with your own.
+The bundled subagents (`researcher`, `reviewer`, `writer`, `latex-writer`, `verifier`) inherit the main research model. To pin one to another model, use `/subagents` or set `subagents.agentOverrides.<name>.model` in `~/.feynman/agent/settings.json`; remove it to inherit again. Feynman sets `subagents.agentExcludeDirs` to `["~/.agents"]` so agent files there cannot replace the bundled agents, and `subagents.defaultSubagentOnlyExtensions` to its research tools and pi-web-access so every subagent can search, including foreground runs. It rewrites that list on each launch unless you replace it with your own.
 
 The subagent runtime config at `~/.feynman/agent/extensions/subagent/config.json` defaults to background delegation on and missions and the fleet view off. Feynman fills in only missing values and leaves your changes alone.
 

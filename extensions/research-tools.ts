@@ -1,6 +1,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 import { registerAlphaTools } from "./research-tools/alpha.js";
+import { registerBibtexTool } from "./research-tools/bibtex.js";
 import { registerCurrentDateResearchContext } from "./research-tools/current-date.js";
 import { registerDiscoveryCommands } from "./research-tools/discovery.js";
 import { registerDocxFallback } from "./research-tools/docx-fallback.js";
@@ -30,5 +31,6 @@ export default function researchTools(pi: ExtensionAPI): void {
 	registerOutputsCommand(pi);
 	registerServiceTierControls(pi);
 	registerScienceDatabaseTools(pi);
+	registerBibtexTool(pi);
 	registerResearchTelemetry(pi);
 }

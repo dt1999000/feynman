@@ -55,4 +55,4 @@ The alphaXiv client keeps its login state and local paper annotations under `~/.
 
 ## Without AlphaXiv
 
-Feynman works without an alphaXiv login. Paper discovery then goes through `feynman_science_database_search` (Semantic Scholar, OpenAlex, arXiv ID lookup, PubMed, Europe PMC, bioRxiv/medRxiv, Crossref) and web search, and full text comes from `fetch_content` on arXiv or open-access pages.
+Feynman works without an alphaXiv login. Paper discovery then goes through `feynman_science_database_search` (Semantic Scholar, OpenAlex, arXiv ID lookup, PubMed, Europe PMC, bioRxiv/medRxiv, Crossref) and web search, and full text comes from `fetch_content` on arXiv or open-access pages. `feynman_bibtex` turns DOIs and arXiv IDs into BibTeX from doi.org for LaTeX bibliographies.

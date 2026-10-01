@@ -2,15 +2,16 @@
 
 `AGENTS.md` is the repo-level contract for agents working in this repository.
 
-Pi subagent behavior does **not** live here. The source of truth for bundled Pi subagents is `.feynman/agents/*.md`, which the runtime syncs into the Pi agent directory. If you need to change how `researcher`, `reviewer`, `writer`, or `verifier` behave, edit the corresponding file in `.feynman/agents/` instead of duplicating those prompts here.
+Pi subagent behavior does **not** live here. The source of truth for bundled Pi subagents is `.feynman/agents/*.md`, which the runtime syncs into the Pi agent directory. If you need to change how `researcher`, `reviewer`, `writer`, `latex-writer`, or `verifier` behave, edit the corresponding file in `.feynman/agents/` instead of duplicating those prompts here.
 
 ## Pi subagents
 
-Feynman ships four bundled research subagents:
+Feynman ships five bundled research subagents:
 
 - `researcher`
 - `reviewer`
 - `writer`
+- `latex-writer`
 - `verifier`
 
 They are defined in `.feynman/agents/` and invoked via the Pi `subagent` tool.
@@ -92,7 +93,7 @@ Never use generic names like `research.md`, `draft.md`, `brief.md`, or `summary.
 
 ## Provenance and verification
 
-- Every output from `/deepresearch` and `/lit` must include a `.provenance.md` sidecar.
+- Every output from `/deepresearch`, `/lit`, and `/relwork` must include a `.provenance.md` sidecar.
 - Provenance sidecars should record source accounting and verification status.
 - Source verification and citation cleanup belong in the `verifier` stage, not in ad hoc edits after delivery.
 - Verification passes should happen before delivery when the workflow calls for them.

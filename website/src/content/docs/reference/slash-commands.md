@@ -19,10 +19,11 @@ Slash commands are available inside the Feynman REPL. They map to research workf
 | `/recipe <task-or-paper>` | Find ranked, implementable ML training recipes backed by papers, datasets, docs, and code |
 | `/compare <topic>` | Compare multiple sources and produce a matrix of agreements, disagreements, and confidence |
 | `/draft <topic>` | Turn research findings into a paper-style draft |
+| `/relwork <path-to-latex-project> [focus]` | Research prior work for your LaTeX paper and write its related work and introduction, with BibTeX fetched from real records |
 | `/autoresearch <idea>` | Run a bounded experiment loop against a benchmark, keeping what works |
 | `/summarize <source>` | Summarize a paper, report, README, local artifact, or PDF with the source kept on disk instead of in context |
 
-Workflow prompts can call the bundled agents (researcher, reviewer, writer, verifier) through Pi's `subagent` tool when delegation helps; narrow tasks stay lead-owned.
+Workflow prompts can call the bundled agents (researcher, reviewer, writer, latex-writer, verifier) through Pi's `subagent` tool when delegation helps; narrow tasks stay lead-owned.
 
 ## Project and session
 

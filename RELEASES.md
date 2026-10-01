@@ -6,6 +6,10 @@ GitHub release notes are generated from the matching `## vX.Y.Z` section in this
 
 ## Unreleased
 
+- **`/relwork` writes the related work and introduction of your LaTeX paper.** Point it at your paper project, for example a venue template you have started, with `feynman relwork ./my-paper`. It reads your abstract, method, citation style, and macros, has researchers search each related-work theme and follow the citation graph of the closest papers, and has the new `latex-writer` agent write the sections into your project. The verifier checks that each citation supports its sentence and the reviewer looks for missing closest work and overclaiming. It never overwrites prose you wrote: it writes `<section>.feynman.tex` next to the file instead. Unresolved points are left as `% TODO(feynman)` comments.
+- **New `feynman_bibtex` tool: bibliography entries come from real records.** It fetches BibTeX for DOIs and arXiv IDs from doi.org (Crossref, and DataCite for arXiv, which gives the original year rather than the latest version's), assigns keys such as `vaswani2017attention`, and merges them into your `.bib` without duplicating papers it already has. Agents are told never to write BibTeX by hand.
+- Give `latex-writer` your strongest writing model with `subagents.agentOverrides.latex-writer.model` in `~/.feynman/agent/settings.json`; it uses your default model otherwise.
+
 ## v0.5.20 - 2026-10-01
 
 - **Settings saved by Windows Notepad or PowerShell no longer stop Feynman.** Both can save UTF-8 with a byte-order mark, which JSON parsing rejects, so Feynman refused to start with "Invalid Feynman settings ... expected a JSON object", and other commands read the file as empty. Feynman now ignores the mark in `settings.json`, `auth.json`, and `web-search.json`, as Pi does. A settings file with a real JSON error now names the error, for example a trailing comma, instead of the generic message.

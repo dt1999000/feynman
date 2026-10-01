@@ -52,14 +52,15 @@ feynman deepresearch "mechanistic interpretability"
 | `/recipe <task>` | Ranked ML training recipes with datasets and code |
 | `/compare <topic>` | Source comparison matrix |
 | `/draft <topic>` | Paper-style draft from research findings |
+| `/relwork <latex project>` | Related work and introduction written into your LaTeX paper, with BibTeX from real records |
 | `/autoresearch <idea>` | Bounded experiment loop against a benchmark |
 | `/summarize <source>` | Summary of a paper, repository, or PDF |
 
-Results are saved to `outputs/` (drafts to `papers/`). `/lit`, `/deepresearch`, and `/recipe` also write a provenance file listing the sources used and what was verified.
+Results are saved to `outputs/` (drafts to `papers/`; `/relwork` writes into your LaTeX project). `/lit`, `/deepresearch`, `/recipe`, and `/relwork` also write a provenance file listing the sources used and what was verified.
 
 ## Sources
 
-Feynman searches alphaXiv, Semantic Scholar, OpenAlex, arXiv, PubMed, Europe PMC, bioRxiv, medRxiv, Crossref, the web, and Hugging Face, and reads local PDFs and documents. Free `OPENALEX_API_KEY` and `SEMANTIC_SCHOLAR_API_KEY` keys avoid the shared rate limits. It runs on stock [Pi](https://github.com/earendil-works/pi) with four research agents: researcher, verifier, reviewer, and writer.
+Feynman searches alphaXiv, Semantic Scholar, OpenAlex, arXiv, PubMed, Europe PMC, bioRxiv, medRxiv, Crossref, the web, and Hugging Face, and reads local PDFs and documents. Free `OPENALEX_API_KEY` and `SEMANTIC_SCHOLAR_API_KEY` keys avoid the shared rate limits. It runs on stock [Pi](https://github.com/earendil-works/pi) with five research agents: researcher, verifier, reviewer, writer, and latex-writer.
 
 ## Telemetry
 
